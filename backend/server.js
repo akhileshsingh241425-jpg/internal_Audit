@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // CORS middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://93.127.194.235:8600'],
   credentials: true
 }));
 
