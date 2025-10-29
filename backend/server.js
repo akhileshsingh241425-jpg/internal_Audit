@@ -2,10 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
-const { connectDB } = require('./src/config/database');
 
-// Load env vars from .env file
+// Load env vars FIRST before importing anything else
 dotenv.config({ path: path.join(__dirname, '.env') });
+
+// Now import database after env is loaded
+const { connectDB } = require('./src/config/database');
 
 // Connect to database
 connectDB();
