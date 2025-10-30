@@ -15,7 +15,9 @@ const Login = ({ onLogin }) => {
     setLoading(true);
 
     try {
+      console.log('Attempting login with:', credentials);
       const response = await login(credentials);
+      console.log('Login response:', response);
       
       // Store token and user data
       localStorage.setItem('token', response.data.token);
@@ -24,8 +26,9 @@ const Login = ({ onLogin }) => {
       // Call parent's onLogin
       onLogin(response.data.data);
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check backend server is running.');
-      console.error('Login error:', err);
+      console.error('Full login error:', err);
+      console.error('Error response:', err.response);
+      setError(err.response?.data?.message || 'Login failed. Please check credentials.');
     } finally {
       setLoading(false);
     }
@@ -90,9 +93,7 @@ const Login = ({ onLogin }) => {
 
           <div className="login-info">
             <p><strong>Demo Credentials:</strong></p>
-            <p>Super Admin: super / super123</p>
-            <p>Admin: admin / admin123</p>
-            <p>Auditor: nishant / nishant123</p>
+            <p>Admin: testuser / test123</p>
           </div>
         </form>
       </div>
